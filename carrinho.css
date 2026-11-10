@@ -1,0 +1,299 @@
+/* ==========================================================================
+   ESTILOS DO CARRINHO DE COMPRAS — TRATTORIA VENEZIA
+   ========================================================================== */
+
+/* Regra Utilitária de Ocultação */
+.cart-page-container .hidden,
+.hidden {
+    display: none !important;
+}
+
+.cart-page-container {
+    width: 100%;
+    min-height: calc(100vh - 90px);
+    background-color: var(--bg-light-gray);
+    padding: 40px 20px 80px 20px;
+}
+
+.cart-content-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.cart-page-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.1rem;
+    color: var(--dark-wine);
+    margin-bottom: 28px;
+    font-weight: 700;
+}
+
+/* Estado 1: Carrinho Vazio */
+.cart-empty-card {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 60px 24px;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.empty-cart-icon {
+    font-size: 3.5rem;
+    color: var(--accent-gold);
+    margin-bottom: 16px;
+}
+
+.cart-empty-card h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem;
+    color: var(--dark-wine);
+    margin-bottom: 8px;
+}
+
+.cart-empty-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.mt-16 {
+    margin-top: 20px;
+}
+
+.btn-continue-shopping {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--primary-wine);
+    color: var(--text-white);
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color 0.2s;
+}
+
+.btn-continue-shopping:hover {
+    background-color: var(--dark-wine);
+}
+
+/* Estado 2: Carrinho Preenchido (Produtos + Resumo) */
+.cart-filled-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 28px;
+    align-items: start;
+}
+
+.cart-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cart-item-card {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    transition: border-color 0.2s ease;
+}
+
+.cart-item-card:hover {
+    border-color: rgba(122, 30, 44, 0.2);
+}
+
+.cart-item-img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    background-color: var(--bg-light-gray);
+    flex-shrink: 0;
+}
+
+.cart-item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.cart-item-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.cart-item-price {
+    font-size: 0.95rem;
+    color: var(--primary-wine);
+    font-weight: 700;
+}
+
+/* Controle de Quantidade */
+.cart-item-qty-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.qty-btn {
+    background: var(--bg-light-gray);
+    border: 1px solid var(--border-color);
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    font-weight: 700;
+    color: var(--text-dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.qty-btn:hover {
+    background: var(--border-color);
+}
+
+.qty-value {
+    font-size: 0.92rem;
+    font-weight: 700;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* Botão de Remover (Lixeira) */
+.btn-remove-item {
+    background: transparent;
+    border: none;
+    color: #c81e1e;
+    font-size: 1.15rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-remove-item:hover {
+    background-color: #fde8e8;
+    transform: scale(1.1);
+}
+
+/* Card de Resumo do Pedido */
+.cart-summary-card {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.summary-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem;
+    color: var(--dark-wine);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+}
+
+.summary-row.total-row {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark-wine);
+    border-top: 1px solid var(--border-color);
+    padding-top: 14px;
+}
+
+.cart-actions-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.btn-cart-primary {
+    background-color: var(--accent-gold);
+    color: var(--dark-wine);
+    border: none;
+    padding: 13px;
+    border-radius: 8px;
+    font-size: 0.98rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-cart-primary:hover {
+    background-color: #c4a02f;
+}
+
+.btn-cart-secondary {
+    background-color: transparent;
+    color: var(--primary-wine);
+    border: 1px solid var(--primary-wine);
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-cart-secondary:hover {
+    background-color: var(--primary-wine);
+    color: var(--text-white);
+}
+
+/* Toast de Notificação */
+.cart-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background-color: var(--dark-wine);
+    color: var(--text-white);
+    border-left: 4px solid var(--accent-gold);
+    padding: 14px 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 3000;
+    animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes toastIn {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 850px) {
+    .cart-filled-layout {
+        grid-template-columns: 1fr;
+    }
+}

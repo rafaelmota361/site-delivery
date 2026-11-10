@@ -1,0 +1,333 @@
+/* ==========================================================================
+   MODAL DE SELEÇÃO E CADASTRO DE ENDEREÇOS — TRATTORIA VENEZIA
+   ========================================================================== */
+
+.address-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2500;
+    padding: 20px;
+    opacity: 1;
+    transition: opacity 0.25s ease;
+}
+
+.address-modal-overlay.hidden,
+.address-view.hidden {
+    display: none !important;
+}
+
+.address-modal-card {
+    background-color: #ffffff;
+    border-radius: 14px;
+    width: 100%;
+    max-width: 540px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+    animation: addressModalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes addressModalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.address-modal-header {
+    background-color: var(--primary-wine);
+    color: var(--text-white);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid var(--accent-gold);
+}
+
+.address-modal-header h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.address-modal-close {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    color: var(--text-white);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.address-modal-close:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.address-modal-body {
+    padding: 24px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.address-guide-text {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+/* LISTA DE ENDEREÇOS CADASTRADOS */
+.address-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.address-card-item {
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.address-card-item:hover {
+    border-color: rgba(122, 30, 44, 0.4);
+    background-color: #faf9f9;
+}
+
+.address-card-item.selected {
+    border-color: var(--primary-wine);
+    background-color: rgba(122, 30, 44, 0.04);
+}
+
+.address-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.address-badge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--primary-wine);
+    background-color: rgba(122, 30, 44, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+    width: fit-content;
+}
+
+.address-card-text {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.address-card-subtext {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.address-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-edit-address {
+    background: transparent;
+    border: none;
+    color: var(--primary-wine);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.btn-edit-address:hover {
+    background: rgba(122, 30, 44, 0.1);
+}
+
+.address-radio-indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.address-card-item.selected .address-radio-indicator {
+    border-color: var(--primary-wine);
+    background-color: var(--primary-wine);
+}
+
+.address-card-item.selected .address-radio-indicator::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+/* FORMULÁRIO DE ENDEREÇO */
+.address-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.address-form-row {
+    display: flex;
+    gap: 14px;
+}
+
+.address-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.address-form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.address-form-group input,
+.address-form-group select {
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.92rem;
+    outline: none;
+    transition: border-color 0.2s;
+    background-color: #ffffff;
+}
+
+.address-form-group input:focus,
+.address-form-group select:focus {
+    border-color: var(--primary-wine);
+    box-shadow: 0 0 0 2px rgba(122, 30, 44, 0.15);
+}
+
+/* APELIDOS DE ENDEREÇO (CIPS DE SELEÇÃO) */
+.address-alias-options {
+    display: flex;
+    gap: 10px;
+}
+
+.alias-chip {
+    flex: 1;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    background: var(--bg-light-gray);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.alias-chip.selected {
+    background-color: var(--primary-wine);
+    color: var(--text-white);
+    border-color: var(--primary-wine);
+}
+
+/* BOTÕES DE AÇÃO DO MODAL */
+.btn-address-submit {
+    background-color: var(--primary-wine);
+    color: var(--text-white);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.98rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 6px;
+}
+
+.btn-address-submit:hover {
+    background-color: var(--dark-wine);
+}
+
+.btn-address-secondary {
+    background-color: transparent;
+    color: var(--primary-wine);
+    border: 1.5px solid var(--primary-wine);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.btn-address-secondary:hover {
+    background-color: var(--primary-wine);
+    color: var(--text-white);
+}
+
+/* NOTIFICAÇÃO DE ALERTA NO MODAL */
+.address-alert {
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    margin-bottom: 14px;
+}
+
+.address-alert.error {
+    background-color: #fde8e8;
+    color: #c81e1e;
+    border: 1px solid #f8b4b4;
+}
+
+.address-alert.success {
+    background-color: #def7ec;
+    color: #03543f;
+    border: 1px solid #84e1bc;
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalização do Pedido - Trattoria Venezia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="carrinho.css">
+    <link rel="stylesheet" href="address.css">
+    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- CABEÇALHO PADRÃO -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-logo">
+                <a href="index.html">
+                    <img src="logo-delivery.png" alt="Trattoria Venezia">
+                </a>
+            </div>
+
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="index.html#cardapio" class="nav-link">Cardápio</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-address">
+                <i class="fa-solid fa-location-dot address-icon"></i>
+                <div class="address-info">
+                    <span class="address-label">ENTREGAR EM:</span>
+                    <span class="address-value">Informe seu endereço</span>
+                </div>
+                <i class="fa-solid fa-chevron-down address-arrow"></i>
+            </div>
+
+            <div class="header-actions">
+                <button class="header-btn" id="userMenuBtn">
+                    <i class="fa-regular fa-user"></i>
+                    <span class="user-btn-text" id="userBtnLabel">Entrar / Cadastrar</span>
+                </button>
+
+                <a href="carrinho.html" class="header-btn cart-btn" style="text-decoration: none;">
+                    <div class="cart-info">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span class="cart-total" id="headerCartTotal">R$ 0,00</span>
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL DE FINALIZAÇÃO -->
+    <main class="checkout-page-container">
+        <div class="checkout-content-wrapper">
+            <h1 class="checkout-page-title">Finalização do Pedido</h1>
+            <p class="checkout-page-subtitle">Confira os detalhes do seu pedido e escolha como deseja realizar o pagamento.</p>
+
+            <div id="checkoutAlert" class="checkout-alert hidden"></div>
+
+            <div class="checkout-grid-layout">
+                <!-- COLUNA DA ESQUERDA: RESUMO DOS PRODUTOS & PAGAMENTO -->
+                <div class="checkout-main-section">
+                    
+                    <!-- RESUMO DOS PRODUTOS -->
+                    <div class="checkout-card">
+                        <h2 class="checkout-section-title">
+                            <i class="fa-solid fa-utensils"></i> Resumo do seu pedido
+                        </h2>
+                        
+                        <div class="summary-table-wrapper">
+                            <table class="checkout-summary-table">
+                                <thead>
+                                    <tr>
+                                        <th>Produto</th>
+                                        <th class="text-center">Quantidade</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="checkoutProductsTbody">
+                                    <!-- Renderizado via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- FORMAS DE PAGAMENTO -->
+                    <div class="checkout-card mt-24">
+                        <h2 class="checkout-section-title">
+                            <i class="fa-solid fa-wallet"></i> Como deseja pagar?
+                        </h2>
+
+                        <div class="payment-methods-grid">
+                            <!-- Opção 1: Pagar na Entrega -->
+                            <div class="payment-option-card" data-payment="pagar_na_entrega">
+                                <div class="payment-radio-indicator"></div>
+                                <div class="payment-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                                <div class="payment-info">
+                                    <span class="payment-title">Pagar na entrega</span>
+                                    <span class="payment-desc">Pague quando seu pedido chegar.</span>
+                                </div>
+                            </div>
+
+                            <!-- Opção 2: Pix -->
+                            <div class="payment-option-card" data-payment="pix">
+                                <div class="payment-radio-indicator"></div>
+                                <div class="payment-icon"><i class="fa-brands fa-pix"></i></div>
+                                <div class="payment-info">
+                                    <span class="payment-title">Pix</span>
+                                    <span class="payment-desc">Pagamento por transferência instantânea.</span>
+                                </div>
+                            </div>
+
+                            <!-- Opção 3: Cartão -->
+                            <div class="payment-option-card" data-payment="cartao">
+                                <div class="payment-radio-indicator"></div>
+                                <div class="payment-icon"><i class="fa-regular fa-credit-card"></i></div>
+                                <div class="payment-info">
+                                    <span class="payment-title">Cartão</span>
+                                    <span class="payment-desc">Pagamento com cartão.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- COLUNA DA DIREITA: RESUMO TOTAL & ENDEREÇO -->
+                <div class="checkout-sidebar-section">
+                    
+                    <!-- ENDEREÇO SELECIONADO -->
+                    <div class="checkout-card">
+                        <h3 class="sidebar-card-title"><i class="fa-solid fa-location-dot"></i> Endereço de Entrega</h3>
+                        <div id="checkoutAddressBox" class="checkout-address-preview">
+                            <!-- Preenchido via JS -->
+                        </div>
+                    </div>
+
+                    <!-- VALORES E AÇÕES -->
+                    <div class="checkout-card mt-24">
+                        <h3 class="sidebar-card-title"><i class="fa-solid fa-receipt"></i> Total do Pedido</h3>
+                        
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="checkoutSubtotal">R$ 0,00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Frete</span>
+                            <span id="checkoutFrete">R$ 0,00</span>
+                        </div>
+                        <div class="summary-row total-row">
+                            <span>Total</span>
+                            <span id="checkoutTotal">R$ 0,00</span>
+                        </div>
+
+                        <div class="checkout-actions">
+                            <button type="button" id="btnSubmitOrder" class="btn-checkout-primary">
+                                Concluir Pagamento <i class="fa-solid fa-check"></i>
+                            </button>
+                            <a href="carrinho.html" class="btn-checkout-secondary">
+                                <i class="fa-solid fa-arrow-left"></i> Voltar ao Carrinho
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- MODAL DE ENDEREÇO DE SUPORTE -->
+    <div id="addressModal" class="address-modal-overlay hidden">
+        <div class="address-modal-card">
+            <div class="address-modal-header">
+                <h3><i class="fa-solid fa-location-dot" style="color: var(--accent-gold);"></i> Onde você quer receber seu pedido?</h3>
+                <button type="button" id="closeAddressModalBtn" class="address-modal-close">&times;</button>
+            </div>
+            <div class="address-modal-body">
+                <div id="addressAlert" class="address-alert hidden"></div>
+                <div id="addressListView" class="address-view">
+                    <p class="address-guide-text">Selecione o endereço de entrega para este pedido:</p>
+                    <div id="addressListContainer" class="address-list"></div>
+                    <button type="button" id="btnAddNewAddress" class="btn-address-secondary"><i class="fa-solid fa-plus"></i> Adicionar novo endereço</button>
+                </div>
+                <div id="addressFormView" class="address-view hidden">
+                    <form id="addressForm" class="address-form">
+                        <input type="hidden" id="addrApelido" value="Minha casa">
+                        <div class="address-form-group">
+                            <label>Identificar como:</label>
+                            <div class="address-alias-options">
+                                <button type="button" class="alias-chip selected" data-alias="Minha casa">Casa</button>
+                                <button type="button" class="alias-chip" data-alias="Trabalho">Trabalho</button>
+                                <button type="button" class="alias-chip" data-alias="Outro">Outro</button>
+                            </div>
+                        </div>
+                        <div class="address-form-row">
+                            <div class="address-form-group" style="flex: 0.4;"><label>CEP *</label><input type="text" id="addrCep" required placeholder="00000-000"></div>
+                            <div class="address-form-group" style="flex: 0.6;"><label>Rua *</label><input type="text" id="addrRua" required placeholder="Rua..."></div>
+                        </div>
+                        <div class="address-form-row">
+                            <div class="address-form-group" style="flex: 0.35;"><label>Número *</label><input type="text" id="addrNumero" required placeholder="120"></div>
+                            <div class="address-form-group" style="flex: 0.65;"><label>Complemento</label><input type="text" id="addrComplemento" placeholder="Apt..."></div>
+                        </div>
+                        <div class="address-form-row"><div class="address-form-group"><label>Bairro *</label><input type="text" id="addrBairro" required placeholder="Bairro..."></div></div>
+                        <div class="address-form-row">
+                            <div class="address-form-group" style="flex: 0.7;"><label>Cidade *</label><input type="text" id="addrCidade" required placeholder="Cidade..."></div>
+                            <div class="address-form-group" style="flex: 0.3;"><label>UF *</label><input type="text" id="addrUF" required placeholder="MG"></div>
+                        </div>
+                        <button type="submit" class="btn-address-submit">Salvar endereço</button>
+                        <button type="button" id="btnBackToAddressList" class="btn-address-secondary" style="margin-top: 4px;">Voltar para lista</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="address.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>
