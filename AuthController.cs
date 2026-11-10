@@ -28,7 +28,7 @@ namespace models.Controllers
             using var connection = new MySqlConnection(_connectionString);
             await connection.OpenAsync();
 
-            verificar se o email ja esta cadastrado
+            // verificar se o email ja esta cadastrado
             var checkSql = "SELECT COUNT(*) FROM usuarios WHERE email = @email";
             using (var checkCmd = new MySqlCommand(checkSql, connection))
             {
@@ -43,7 +43,7 @@ namespace models.Controllers
             // hash da senha
             string senhaHash = BCrypt.Net.BCrypt.HashPassword(dto.Senha);
 
-            // aidiconar no mysql
+            // adicionar no mysql
             var insertSql = @"INSERT INTO usuarios (nome, sobrenome, email, senha_hash, cpf, telefone) 
                               VALUES (@nome, @sobrenome, @email, @senhaHash, @cpf, @telefone)";
 

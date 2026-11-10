@@ -1,0 +1,19 @@
+[
+  {
+    "idUsuario": 1,
+    "idEndereco": 1,
+    "formaPagamento": "pix",
+    "itens": [
+      { "idProduto": 1, "quantidade": 2 },
+      { "idProduto": 2, "quantidade": 1 }
+    ]
+  },
+  {
+    "idUsuario": 1,
+    "idEndereco": 1,
+    "formaPagamento": "dinheiro",
+    "itens": [
+      { "idProduto": 3, "quantidade": 1 }
+    ]
+  }
+]
